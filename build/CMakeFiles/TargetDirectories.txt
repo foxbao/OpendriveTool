@@ -1,0 +1,8 @@
+/home/jimview/Downloads/code/OpendriveTool/build/CMakeFiles/install/strip.dir
+/home/jimview/Downloads/code/OpendriveTool/build/CMakeFiles/install/local.dir
+/home/jimview/Downloads/code/OpendriveTool/build/CMakeFiles/install.dir
+/home/jimview/Downloads/code/OpendriveTool/build/CMakeFiles/list_install_components.dir
+/home/jimview/Downloads/code/OpendriveTool/build/CMakeFiles/rebuild_cache.dir
+/home/jimview/Downloads/code/OpendriveTool/build/CMakeFiles/edit_cache.dir
+/home/jimview/Downloads/code/OpendriveTool/build/CMakeFiles/test-xodr.dir
+/home/jimview/Downloads/code/OpendriveTool/build/CMakeFiles/OpenDrive.dir

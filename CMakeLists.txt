@@ -49,7 +49,7 @@ target_include_directories(OpenDrive
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/thirdparty>)
 
-add_executable(test-xodr test.cpp)
+add_executable(test-xodr test.cpp CoordinateTransform.cpp)
 target_link_libraries(test-xodr OpenDrive PROJ::proj)
 
 install(
