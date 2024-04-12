@@ -1,1 +1,0 @@
-/usr/bin/c++  -Wall -g   CMakeFiles/test-xodr.dir/test.cpp.o CMakeFiles/test-xodr.dir/CoordinateTransform.cpp.o  -o test-xodr  -Wl,-rpath,/usr/local/lib: libOpenDrive.a /usr/local/lib/libproj.so.25.9.0.1 

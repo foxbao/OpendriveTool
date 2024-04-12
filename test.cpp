@@ -36,12 +36,8 @@ int main(int argc, char **argv)
         return 1;
     }
 
-
-
-
     odr::OpenDriveMap odr_map(argv[1]);
-    const double eps = 0.1;
-
+    const double eps = 5;
     std::vector<odr::Vec3D> lane_pts;
     std::vector<odr::Vec3D> roadmark_pts;
     std::vector<odr::Vec3D> road_object_pts;
@@ -57,10 +53,11 @@ int main(int argc, char **argv)
 
             for (odr::Lane lane : lanesection.get_lanes())
             {
-                auto lane_mesh = road.get_lane_mesh(lane, eps);
-                lane_pts.insert(lane_pts.end(), lane_mesh.vertices.begin(), lane_mesh.vertices.end());
+                // auto lane_mesh = road.get_lane_mesh(lane, eps);
+                auto lane_border_line=road.get_lane_border_line(lane,eps);
+                lane_pts.insert(lane_pts.end(), lane_border_line.begin(), lane_border_line.end());
 
-                for(auto vertice:lane_mesh.vertices){
+                for(auto vertice:lane_border_line){
                     double x = vertice[0] + XOffset;
                     double y = vertice[1] + YOffset;
                     transformer->UtmXYToLatlon(x, y, &llh);
@@ -68,37 +65,10 @@ int main(int argc, char **argv)
                     outfile << std::endl;
                 }
                 outfile << "---"<<std::endl;
-                // auto roadmarks = lane.get_roadmarks(s_start, s_end);
-                // for (const auto &roadmark : roadmarks)
-                // {
-                //     auto roadmark_mesh = road.get_roadmark_mesh(lane, roadmark, eps);
-                //     roadmark_pts.insert(roadmark_pts.end(), roadmark_mesh.vertices.begin(), roadmark_mesh.vertices.end());
-                // }
             }
         }
-
-        // for (odr::RoadObject road_object : road.get_road_objects())
-        // {
-        //     auto road_object_mesh = road.get_road_object_mesh(road_object, eps);
-        //     road_object_pts.insert(road_object_pts.end(), road_object_mesh.vertices.begin(), road_object_mesh.vertices.end());
-        // }
-
-        // for (odr::RoadSignal road_signal : road.get_road_signals())
-        // {
-        //     auto road_signal_mesh = road.get_road_signal_mesh(road_signal);
-        //     road_signal_pts.insert(road_signal_pts.end(), road_signal_mesh.vertices.begin(), road_signal_mesh.vertices.end());
-        // }
     }
     outfile.close();
-    // for (auto pt : lane_pts)
-    // {
-    //     double x = pt[0] + XOffset;
-    //     double y = pt[1] + YOffset;
-    //     transformer->UtmXYToLatlon(x, y, &llh);
-    //     outfile << llh.lat << " " << llh.lon << " " << 0;
-    //     outfile << std::endl;
-    // }
-    // outfile.close();
     printf("Finished, got %lu lane points, %lu roadmark points, %lu road object points, %lu road signal points\n",
            lane_pts.size(),
            roadmark_pts.size(),

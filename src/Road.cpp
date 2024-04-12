@@ -218,9 +218,27 @@ std::set<double> Road::approximate_lane_border_linear(const Lane& lane, const do
     return this->approximate_lane_border_linear(lane, lane.key.lanesection_s0, s_end, outer);
 }
 
+
+std::set<double> resample(const double s_start, const double s_end, const double eps){
+    if ((s_start == s_end))
+    {
+        return {};
+    }
+    
+    std::vector<double> s_vals{s_start};
+    double val=s_start+eps;
+    while(val<s_end){
+        s_vals.push_back(val);
+        val+=eps;
+    }
+    s_vals.push_back(s_end);
+    std::set<double> s_vals_set(s_vals.begin(), s_vals.end());
+    return s_vals_set;
+}
 Line3D Road::get_lane_border_line(const Lane& lane, const double s_start, const double s_end, const double eps, const bool outer) const
 {
-    std::set<double> s_vals = this->approximate_lane_border_linear(lane, s_start, s_end, eps, outer);
+    // std::set<double> s_vals = this->approximate_lane_border_linear(lane, s_start, s_end, eps, outer);
+    std::set<double> s_vals=resample(s_start,s_end,eps);
 
     Line3D border_line;
     for (const double& s : s_vals)

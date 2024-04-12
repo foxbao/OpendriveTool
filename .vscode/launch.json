@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/test-xodr",
-            "args": ["test.xodr"],
+            "args": ["lingang.xodr"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
