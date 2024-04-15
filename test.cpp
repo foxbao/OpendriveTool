@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     }
 
     odr::OpenDriveMap odr_map(argv[1]);
-    const double eps = 5;
+    const double eps = 10;
     std::vector<odr::Vec3D> lane_pts;
     std::vector<odr::Vec3D> roadmark_pts;
     std::vector<odr::Vec3D> road_object_pts;

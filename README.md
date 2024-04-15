@@ -16,6 +16,8 @@ sudo apt install proj
 ## Example
 Here's an example of how code using libOpenDRIVE looks. For a more complete example refer to [test.cpp](test.cpp).
 
+对Opendrive程序，我们进行了修改，以实现间隔eps采样的功能。注意，原本opendrive的get_lane_border_line并没有完全实现间隔eps采样。我们对Road::get_lane_border_line函数进行了修改，调用了一个新建的resample函数，实现了间隔采样
+
 ```c++
 // load map
 odr::OpenDriveMap odr_map("test.xodr");
